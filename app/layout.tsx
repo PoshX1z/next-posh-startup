@@ -1,49 +1,49 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import "easymde/dist/easymde.min.css";
+/* import "easymde/dist/easymde.min.css"; //For working with markdown sanity plugin. */
 
 const workSans = localFont({
   src: [
     {
       path: "./fonts/Worksans-Black.ttf",
       weight: "900",
-      style: "nomral",
+      style: "normal",
     },
     {
       path: "./fonts/Worksans-ExtraBold.ttf",
       weight: "800",
-      style: "nomral",
+      style: "normal",
     },
     {
       path: "./fonts/Worksans-Bold.ttf",
       weight: "700",
-      style: "nomral",
+      style: "normal",
     },
     {
       path: "./fonts/Worksans-SemiBold.ttf",
       weight: "600",
-      style: "nomral",
+      style: "normal",
     },
     {
       path: "./fonts/Worksans-Medium.ttf",
       weight: "500",
-      style: "nomral",
+      style: "normal",
     },
     {
       path: "./fonts/Worksans-Regular.ttf",
       weight: "400",
-      style: "nomral",
+      style: "normal",
     },
     {
       path: "./fonts/Worksans-Thin.ttf",
       weight: "200",
-      style: "nomral",
+      style: "normal",
     },
     {
       path: "./fonts/Worksans-ExtraLight.ttf",
       weight: "100",
-      style: "nomral",
+      style: "normal",
     },
   ],
   variable: "--font-work-sans",

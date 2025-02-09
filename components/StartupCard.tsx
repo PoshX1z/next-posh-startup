@@ -4,60 +4,53 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
-import { Author, Startup } from "@/sanity/types";
 
-export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
-
-const StartupCard = ({ post }: { post: StartupTypeCard }) => {
-  const {
-    _createdAt,
-    views,
-    author,
-    _id,
-    description,
-    image,
-    category,
-    title,
-  } = post;
+//Invididual Startup Card.
+const StartupCard = ({ post }: { post: StartupCardType }) => {
   return (
     <li className="startup-card group">
       <div className="flex-between">
-        <p className="startup-card-date">{formatDate(_createdAt)}</p>
+        <p className="startup-card-date">{formatDate(post._createdAt)}</p>
         <div className="flex gap-1.5">
           <EyeIcon className="size-6 text-primary" />
-          <span className="text-16-medium">{views}</span>
+          <span>{post.views}</span>
         </div>
       </div>
       <div className="flex-between mt-5 gap-5">
         <div className="flex-1">
-          <Link href={`/user/${author?._id}`}>
-            <p className="text-16-medium line-clamp-1">{author?.name}</p>
+          {/* Click author name to link to author profile  */}
+          <Link href={`/user/${post.author?._id}`}>
+            <p className="text=16-medium line-clamp-1">{post?.author?.name}</p>
           </Link>
-          <Link href={`/startup/${_id}`}>
-            <h3 className="text-26semibold line-clamp-1">{title}</h3>
+          {/* Click post title to link to startup page */}
+          <Link href={`/startup/${post._id}`}>
+            <h3 className="text-26-semibold line-clamp-1">{post.title}</h3>
           </Link>
         </div>
-        <Link href={`/user/${author?._id}`}>
+        {/* Click profile to link to author profile */}
+        <Link href={`/user/${post.author?._id}`}>
           <Image
-            src="https://placehold.co/48x48"
-            alt="placeholder"
+            src="https://img.freepik.com/free-vector/cute-robot-holding-phone-with-laptop-cartoon-vector-icon-illustration-science-technology-isolated_138676-4870.jpg?t=st=1738926582~exp=1738930182~hmac=52f4d5ea8d008097a8a85a33f1f20c8432436b2787a41cbd508e1eb92db5fe98&w=826"
+            alt="profile"
             width={48}
             height={48}
             className="rounded-full"
           />
         </Link>
       </div>
-      <Link href={`/startup/${_id}`}>
-        <p className="startup-card-desc">{description}</p>
-
-        <img src={image} alt="placeholder" className="startup-card-img" />
+      {/* Click image to link to startup page */}
+      <Link href={`/startup/${post._id}`}>
+        <p className="startup-card-desc">{post.description}</p>
+        <img src={post.image} alt="image" className="startup-card-img" />
       </Link>
+      {/* Click category to link to category genres */}
       <div className="flex-between gap-3 mt-5">
-        <Link href={`/?query=${category?.toLowerCase()}`}>
-          <p className="text-16-medium">{category}</p>
+        <Link href={`/?query=${post.category.toLowerCase()}`}>
+          <p className="text-16-medium">{post.category}</p>
         </Link>
+        {/* Click 'Details' to link to startup page */}
         <Button className="startup-card-btn" asChild>
-          <Link href={`/startup/${_id}`}>Details</Link>
+          <Link href={`/startup/${post._id}`}>Details</Link>
         </Button>
       </div>
     </li>
